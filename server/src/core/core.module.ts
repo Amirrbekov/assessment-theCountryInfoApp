@@ -3,8 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CountryModule } from '../country/country.module';
 import { CalendarModule } from '../calendar/calendar.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CalendarEvent } from '../calendar/models/calendar-event.entity';
-import { User } from '../calendar/models/user.entity';
 
 @Module({
   imports: [
@@ -21,7 +19,7 @@ import { User } from '../calendar/models/user.entity';
         username: configService.get<string>('POSTGRES_USER'),
         password: configService.get<string>('POSTGRES_PASSWORD'),
         database: configService.get<string>('POSTGRES_DATABASE'),
-        entities: [User, CalendarEvent],
+        autoLoadEntities: true,
         synchronize: true, 
       }),
     }),

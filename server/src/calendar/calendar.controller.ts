@@ -2,11 +2,11 @@ import { Body, Controller, Param, Post } from '@nestjs/common';
 import { CalendarService } from './calendar.service';
 import { AddHolidaysDto } from './dtos/add-holiday.dto';
 
-@Controller('users/:userId/calendar')
+@Controller('users')
 export class CalendarController {
   constructor(private readonly calendarService: CalendarService) {}
 
-  @Post('holidays')
+  @Post(':userId/calendar/holidays')
   async addHolidays(
     @Param('userId') userId: number,
     @Body() addHolidaysDto: AddHolidaysDto,
